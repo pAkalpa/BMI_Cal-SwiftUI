@@ -23,8 +23,8 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .border(Color.black)
             Button {
-                let weight = Double(self.weightText)!
-                let height = Double(self.heightText)!
+                let weight = Double(self.weightText) ?? 0.0
+                let height = Double(self.heightText) ?? 0.0
                 self.bmi = weight/(height * height)
             } label: {
                 Text("Calculate BMI")
