@@ -24,8 +24,17 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .border(Color.black)
             Button {
-                let weight = Double(self.weightText) ?? 0.0
-                let height = Double(self.heightText) ?? 0.0
+                var weight: Double = 0
+                var height: Double = 0
+                
+                if let weightDouble = Double(self.weightText) {
+                    weight = weightDouble
+                }
+                
+                if let heightDouble = Double(self.heightText) {
+                    height = heightDouble
+                }
+                
                 self.bmi = weight/(height * height)
                 
                 if (self.bmi < 18.5) {
@@ -42,6 +51,7 @@ struct ContentView: View {
                     .padding()
                     .foregroundColor(Color.white)
                     .background(Color.blue)
+                    .tint(.black)
             }
             Text("BMI: \(bmi, specifier: "%.1f"), \(classificationText)")
                 .font(.title)
@@ -53,5 +63,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        ZStack {
+            Color(.black)
+            ContentView().environment(\.colorScheme, .dark)
+        }
     }
 }
